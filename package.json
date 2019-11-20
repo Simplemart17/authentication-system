@@ -1,0 +1,44 @@
+{
+  "name": "authentication-system",
+  "version": "1.0.0",
+  "description": "A system to authenticate users",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "start:dev": "nodemon ./src/index.js --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simplemart17/authentication-system.git"
+  },
+  "keywords": [
+    "authentication"
+  ],
+  "author": "Martins Aloba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Simplemart17/authentication-system/issues"
+  },
+  "homepage": "https://github.com/Simplemart17/authentication-system#readme",
+  "dependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
