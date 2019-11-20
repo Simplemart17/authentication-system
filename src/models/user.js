@@ -1,6 +1,14 @@
+import bcrypt from 'bcrypt';
+
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User',
     {
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       fullName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,16 +29,28 @@ export default (sequelize, DataTypes) => {
       verificationToken: {
         type: DataTypes.STRING,
       },
-      role: {
-        type: DataTypes.ENUM('basic', 'admin', 'superAdmin'),
-        defaultValue: 'basic',
-      },
     });
 
-  // eslint-disable-next-line no-unused-vars
+  const hash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+  User.beforeCreate((user) => {
+    const hashedPass = hash(user.dataValues.password);
+    user.password = hashedPass;
+  });
+
   User.associate = (models) => {
-    // associations can be defined here
+    User.hasMany(models.Role, {
+      foreignKey: 'userId',
+      as: 'userRoles',
+      onDelete: 'CASCADE',
+    });
+    User.hasMany(models.Group, {
+      foreignKey: 'userId',
+      as: 'userGroups',
+      onDelete: 'CASCADE',
+    });
   };
+  User.prototype.comparePassword = (password, hashPassword) => bcrypt.compareSync(password, hashPassword);
 
   return User;
 };
