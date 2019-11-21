@@ -1,6 +1,6 @@
 import uuid from 'uuid/v4';
 import dbModel from '../models';
-import Auth from '../middlewares/Auth';
+import generateToken from '../middlewares/Auth';
 import confirmationMail from '../utils/confirmationMail';
 
 export const signUpUser = async (req, res) => {
@@ -92,7 +92,7 @@ export const signInUser = async (req, res) => {
       return res.status(201).json({
         status: 'success',
         data: {
-          token: Auth.generateToken({ id, fullName, role }),
+          token: generateToken({ id, fullName, role }),
         },
       });
     }
