@@ -6,7 +6,14 @@
   "scripts": {
     "start": "node ./src/index.js",
     "start:dev": "nodemon ./src/index.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate": "sequelize db:migrate",
+    "migrate:test": "NODE_ENV=test sequelize db:migrate",
+    "seed:table": "sequelize db:seed:all",
+    "seed:test:table": "NODE_ENV=test sequelize db:seed:all",
+    "delete:seed": "sequelize db:seed:undo:all",
+    "refresh:db": "npm run delete:seed && npm run seed:table",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create:test:db": "NODE_ENV=test sequelize db:create"
   },
   "repository": {
     "type": "git",
@@ -25,10 +32,13 @@
     "@babel/core": "^7.7.2",
     "@babel/node": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
+    "@sendgrid/mail": "^6.4.0",
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",

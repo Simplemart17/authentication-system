@@ -17,5 +17,9 @@ module.exports = {
   },
   rules: {
     "no-console": 0,
+    "max-len": [2, 120, 4, {'ignoreUrls': true}],
+    "no-param-reassign": 0,
+    "consistent-return": 0,
+    "no-unused-vars": 0,
   },
 };

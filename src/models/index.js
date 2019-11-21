@@ -1,13 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
+import configJson from '../config/config';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 
-const config = ('/../config/config.js')[env];
-
-console.log('this is the environment: ', env);
+const config = configJson[env];
 
 const db = {};
 

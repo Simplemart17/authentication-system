@@ -17,7 +17,6 @@ module.exports = {
     },
     password: {
       type: Sequelize.STRING,
-      unique: true,
       allowNull: false,
     },
     verified: {
@@ -26,10 +25,6 @@ module.exports = {
     },
     verificationToken: {
       type: Sequelize.STRING,
-    },
-    role: {
-      type: Sequelize.ENUM('basic', 'admin', 'superAdmin'),
-      defaultValue: 'basic',
     },
     createdAt: {
       allowNull: false,
